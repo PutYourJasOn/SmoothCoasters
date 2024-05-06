@@ -2,5 +2,8 @@
     "category.smoothcoasters": "SmoothCoasters",
     "key.smoothcoasters.toggle.camera": "Toggle camera rotation",
     "smoothcoasters.camera.enabled": "SmoothCoasters camera rotation enabled",
-    "smoothcoasters.camera.disabled": "SmoothCoasters camera rotation disabled"
+    "smoothcoasters.camera.disabled": "SmoothCoasters camera rotation disabled",
+    "smoothcoasters.display.enabled": "SmoothCoasters display entity animation enabled",
+    "smoothcoasters.display.disabled": "SmoothCoasters display entity animation disabled",
+    "key.smoothcoasters.toggle.display": "Toggle display entity animation"
 }

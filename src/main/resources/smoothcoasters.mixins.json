@@ -11,7 +11,9 @@
         "EntityMixin",
         "EntityRenderDispatcherMixin",
         "GameRendererMixin",
-        "MinecraftClientMixin"
+        "MinecraftClientMixin",
+        "DisplayEntityRendererMixin",
+        "DisplayEntityMixin"
     ],
     "injectors": {
         "defaultRequire": 1

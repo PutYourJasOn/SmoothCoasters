@@ -79,4 +79,14 @@ public class AnimatedPose {
         previous.slerp(lerp, t, current);
         return MathUtil.getEuler(current);
     }
+
+    public Quaternionf calculateQuaternion(float t) {
+        previous.slerp(lerp, t, current);
+        return current;
+    }
+
+    public Quaternionf getTarget() {
+        return target;
+    }
+
 }

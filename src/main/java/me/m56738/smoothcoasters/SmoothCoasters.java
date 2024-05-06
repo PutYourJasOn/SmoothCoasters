@@ -31,6 +31,9 @@ public class SmoothCoasters implements ClientModInitializer {
     private String version;
     private KeyBinding toggleBinding;
 
+    private KeyBinding displayToggleBinding;
+    private static boolean displayToggle = true;
+
     public static SmoothCoasters getInstance() {
         return instance;
     }
@@ -56,6 +59,13 @@ public class SmoothCoasters implements ClientModInitializer {
                 "category.smoothcoasters"
         ));
 
+        displayToggleBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                "key.smoothcoasters.toggle.display",
+                InputUtil.Type.KEYSYM,
+                GLFW.GLFW_KEY_F10,
+                "category.smoothcoasters"
+        ));
+
         ClientPlayNetworking.registerGlobalReceiver(HANDSHAKE, this::handleHandshake);
 
         C2SPlayChannelEvents.UNREGISTER.register((handler, sender, server, channels) -> {
@@ -75,6 +85,17 @@ public class SmoothCoasters implements ClientModInitializer {
                     client.inGameHud.getChatHud().addMessage(Text.translatable("smoothcoasters.camera.disabled"));
                 }
             }
+
+            while (displayToggleBinding.wasPressed()) {
+                boolean enabled = !getDisplayAnimationToggle();
+                setDisplayAnimationToggle(enabled);
+                if(enabled) {
+                    client.inGameHud.getChatHud().addMessage(Text.translatable("smoothcoasters.display.enabled"));
+                } else {
+                    client.inGameHud.getChatHud().addMessage(Text.translatable("smoothcoasters.display.disabled"));
+                }
+            }
+
         });
     }
 
@@ -160,4 +181,13 @@ public class SmoothCoasters implements ClientModInitializer {
     public void setRotationToggle(boolean enabled) {
         ((GameRendererMixinInterface) MinecraftClient.getInstance().gameRenderer).scSetRotationToggle(enabled);
     }
+
+    public static boolean getDisplayAnimationToggle() {
+        return displayToggle;
+    }
+
+    public static void setDisplayAnimationToggle(boolean enabled) {
+        displayToggle = enabled;
+    }
+
 }
